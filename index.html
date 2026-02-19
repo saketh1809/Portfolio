@@ -154,6 +154,18 @@ border-radius:2px;
 opacity:.7;
 }
 
+@media(max-width:768px){
+
+  .section-header h2{
+  font-size:30px;
+  }
+
+  section{
+  padding:80px 0;
+  }
+
+}
+
 
 /* HERO */
 .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
@@ -171,6 +183,28 @@ display:inline-flex;align-items:center;gap:8px;
 }
 .btn-primary{background:var(--gradient);color:black}
 .btn-outline{border:1px solid var(--border);color:white}
+
+@media(max-width:768px){
+  .hero{
+  grid-template-columns:1fr;
+  gap:40px;
+  text-align:center;
+  }
+
+  .hero h1{
+  font-size:40px;
+  }
+
+  .profile-wrap{
+  width:220px;
+  height:220px;
+  }
+
+  .badge{
+  font-size:12px;
+  }
+}
+
 
 /* SOCIAL */
 .socials{display:flex;gap:14px;margin-top:40px}
@@ -221,6 +255,16 @@ gap:28px;
 margin-bottom:18px;
 color:#94a3b8;
 }
+
+@media(max-width:768px){
+
+  .about-layout{
+  grid-template-columns:1fr;
+  gap:32px;
+  }
+
+}
+
 
 /* ===== GLASS CARD BASE ===== */
 
@@ -394,6 +438,23 @@ transition:.3s;
 .grid-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .grid-3{grid-template-columns:repeat(auto-fit,minmax(370px,1fr))}
 
+@media(max-width:768px){
+
+  .grid-3{
+  grid-template-columns:1fr;
+  }
+
+  .grid-2{
+  grid-template-columns:1fr;
+  }
+
+  .project-card{
+  padding:24px;
+  }
+
+}
+
+
 /* CHIP */
 .chip{
 display:inline-block;padding:6px 12px;border-radius:999px;
@@ -518,23 +579,28 @@ margin-bottom:16px;
 }
 
 /* MOBILE */
-@media(max-width:900px){
+@media(max-width:768px){
 
-.timeline::before{
-left:20px;
+  .timeline::before{
+  display:none;
+  }
+
+  .timeline-row{
+  flex-direction:column;
+  gap:20px;
+  margin-bottom:40px;
+  }
+
+  .timeline-item{
+  width:100%;
+  margin:0;
+  }
+
+  .timeline-dot{
+  display:none;
+  }
+
 }
-
-.timeline-dot{
-left:20px;
-}
-
-.timeline-item{
-width:100%;
-margin-left:40px;
-}
-
-}
-
 
 
 /* PROJECT */
@@ -672,11 +738,15 @@ box-shadow:0 0 18px rgba(56,189,248,.25);
 border-color:#38bdf8;
 }
 
-/* input,textarea{
-width:100%;padding:12px;border-radius:10px;background:#0b1322;border:1px solid var(--border);color:white;margin-top:10px
-} */
+@media(max-width:768px){
 
-/* SCROLL ANIMATION */
+  .contact-grid{
+  grid-template-columns:1fr;
+  gap:20px;
+  }
+
+}
+
 .reveal{opacity:0;transform:translateY(40px);transition:.6s}
 .reveal.active{opacity:1;transform:translateY(0)}
 
@@ -688,6 +758,15 @@ footer{text-align:center;padding:40px;color:#64748b}
 .timeline-item{width:100%;margin-left:0}
 .contact-grid{grid-template-columns:1fr}
 }
+
+@media(max-width:768px){
+
+  .container{
+  padding:0 18px;
+  }
+
+}
+
 
 </style>
 </head>
