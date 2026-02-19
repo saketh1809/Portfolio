@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saketh Vishwanatham</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+
+/* ===== ROOT ===== */
+:root{
+--bg:#050a14;
+--card:#0c1424;
+--border:#1b2436;
+--primary:#38bdf8;
+--secondary:#8b5cf6;
+--text:#e5e7eb;
+--muted:#94a3b8;
+--gradient:linear-gradient(135deg,#38bdf8,#8b5cf6);
+--glow:0 0 25px rgba(56,189,248,.25);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at 20% 20%,#081020,#050a14);
+color:var(--text);
+overflow-x:hidden;
+}
+html{scroll-behavior:smooth}
+
+/* GRID BACKGROUND */
+body::before{
+content:"";
+position:fixed;inset:0;
+background-image:
+linear-gradient(rgba(56,189,248,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(56,189,248,.05) 1px, transparent 1px);
+background-size:60px 60px;
+z-index:-1;
+}
+
+h1,h2,h3,h4{letter-spacing:-.02em}
+p{line-height:1.7;color:var(--muted)}
+
+.container{max-width:1500px;margin:auto;padding:0 24px}
+section{padding:110px 0}
+
+/* NAV */
+nav{
+position:fixed;width:100%;top:0;
+background:rgba(5,10,20,.7);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:1000;
+}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{color:#7dd3fc;font-weight:600}
+nav a{
+position:relative;
+font-size:15px;
+color:#cbd5e1;
+text-decoration:none;
+font-weight:500;
+margin-left:28px;
+letter-spacing:.02em;
+transition:.25s;
+}
+
+/* HOVER TEXT COLOR */
+nav a:hover{
+color:#38bdf8;
+}
+
+
+/* ANIMATED UNDERLINE */
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:100%;
+height:2px;
+background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+border-radius:3px;
+transform:scaleX(0);
+transform-origin:right;
+transition:transform .35s ease;
+}
+
+/* HOVER EFFECT */
+nav a:hover::after{
+transform:scaleX(1);
+transform-origin:left;
+}
+
+/* MOBILE NAV */
+.hamburger{
+display:none;
+font-size:26px;
+cursor:pointer;
+color:#38bdf8;
+}
+
+.nav-links{
+display:flex;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .nav-links{
+    position:absolute;
+    top:70px;
+    right:0;
+    background:#050a14;
+    flex-direction:column;
+    width:220px;
+    padding:20px;
+    gap:18px;
+    border-left:1px solid rgba(255,255,255,.08);
+    transform:translateX(100%);
+    transition:.3s;
+    }
+
+    .nav-links.active{
+    transform:translateX(0);
+    }
+
+    .hamburger{
+    display:block;
+    }
+
+    nav a{
+    margin-left:0;
+    }
+
+}
+
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:60px}
+.section-header span{color:#38bdf8;font-family:JetBrains Mono}
+.section-header h2{font-size:42px;font-weight:800}
+.line{
+flex:1;
+height:2px;
+margin-left:20px;
+background:linear-gradient(90deg,#38bdf8,transparent);
+border-radius:2px;
+opacity:.7;
+}
+
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
+.badge{
+border:1px solid rgba(56,189,248,.4);
+padding:8px 16px;border-radius:999px;
+color:#93c5fd;font-size:13px;margin-bottom:20px;
+box-shadow:var(--glow);
+}
+.hero h1{font-size:64px;font-weight:900}
+.gradient{background:var(--gradient);-webkit-background-clip:text;color:transparent}
+.btn{
+padding:14px 26px;border-radius:12px;font-weight:600;margin-top:28px;margin-right:12px;text-decoration:none;
+display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--gradient);color:black}
+.btn-outline{border:1px solid var(--border);color:white}
+
+/* SOCIAL */
+.socials{display:flex;gap:14px;margin-top:40px}
+.socials a{
+width:46px;height:46px;border-radius:12px;
+display:flex;align-items:center;justify-content:center;
+background:#0b1322;border:1px solid var(--border);
+transition:.3s;
+color:inherit;
+}
+.socials a:hover{box-shadow:var(--glow);transform:translateY(-3px); color:inherit;}
+
+/* PROFILE */
+.profile-wrap{width:320px;height:320px;border-radius:50%;position:relative;margin:auto}
+.profile-wrap::before{
+content:"";
+position:absolute;
+inset:-14px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(56,189,248,.45), transparent 70%);
+filter:blur(30px);
+opacity:.9;
+}
+.profile-wrap img{
+width:100%;height:100%;border-radius:50%;
+border:3px solid #38bdf8;
+object-fit:cover;
+position:relative;
+z-index:2;
+}
+
+/* ===== ABOUT LAYOUT ===== */
+
+.about-layout{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:48px;
+align-items:start;
+}
+
+.about-side{
+display:flex;
+flex-direction:column;
+gap:28px;
+}
+
+.about-text p{
+margin-bottom:18px;
+color:#94a3b8;
+}
+
+/* ===== GLASS CARD BASE ===== */
+
+.glass-card{
+position:relative;
+padding:32px;
+border-radius:22px;
+
+background:
+linear-gradient(180deg, rgba(15,23,42,.55), rgba(2,6,23,.65));
+
+border:1px solid rgba(56,189,248,.18);
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.02) inset,
+0 10px 40px rgba(2,6,23,.6);
+}
+
+.glass-card::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:22px;
+background:radial-gradient(circle at 20% 0%, rgba(56,189,248,.12), transparent 45%);
+pointer-events:none;
+}
+
+/* ===== EDUCATION CARD ===== */
+
+.education-card{
+display:flex;
+gap:18px;
+align-items:flex-start;
+}
+
+.education-icon{
+width:42px;
+height:42px;
+border-radius:14px;
+
+background:linear-gradient(135deg,#38bdf8,#3b82f6);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+flex-shrink:0;
+}
+
+.education-label{
+font-family:"JetBrains Mono";
+font-size:13px;
+letter-spacing:.08em;
+color:#38bdf8;
+margin-bottom:6px;
+}
+
+.education-title{
+font-size:20px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+.education-school{
+font-size:14px;
+color:#94a3b8;
+margin-bottom:16px;
+}
+
+.education-year{
+display:inline-block;
+padding:6px 14px;
+border-radius:999px;
+font-size:12px;
+color:#7dd3fc;
+background:rgba(56,189,248,.1);
+border:1px solid rgba(56,189,248,.35);
+}
+
+/* ===== STRENGTH CARD ===== */
+
+.strengths-label{
+font-family:"JetBrains Mono";
+font-size:13px;
+letter-spacing:.08em;
+color:#38bdf8;
+margin-bottom:28px;
+}
+
+.strengths-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:32px 48px;
+}
+
+.strength-item{
+display:flex;
+gap:16px;
+align-items:flex-start;
+}
+
+.strength-icon{
+width:42px;
+height:42px;
+border-radius:14px;
+
+background:
+linear-gradient(180deg, rgba(56,189,248,.12), rgba(56,189,248,.05));
+
+border:1px solid rgba(56,189,248,.35);
+
+display:flex;
+align-items:center;
+justify-content:center;
+color:#38bdf8;
+
+box-shadow:0 0 20px rgba(56,189,248,.15);
+}
+
+.strength-item h4{
+font-size:15px;
+font-weight:600;
+margin-bottom:6px;
+color:#e2e8f0;
+}
+
+.strength-item p{
+font-size:13px;
+color:#94a3b8;
+line-height:1.55;
+max-width:240px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+.about-layout{
+grid-template-columns:1fr;
+}
+
+.strengths-grid{
+grid-template-columns:1fr;
+gap:24px;
+}
+
+}
+
+
+/* FLOAT BADGES */
+.float{
+position:absolute;background:#0b1322;border:1px solid var(--border);
+padding:8px 12px;border-radius:10px;font-size:12px;color:#93c5fd;
+animation:float 4s ease-in-out infinite;
+}
+.float2{top:-10px;right:-40px}
+.float1{bottom:-20px;left:-40px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* CARD */
+.card{
+background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+border:1px solid rgba(56,189,248,.15);
+border-radius:20px;padding:24px;
+transition:.3s;
+}
+.card:hover{box-shadow:var(--glow);transform:translateY(-4px)}
+
+/* GRID */
+.grid{display:grid;gap:24px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(370px,1fr))}
+
+/* CHIP */
+.chip{
+display:inline-block;padding:6px 12px;border-radius:999px;
+background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.4);
+margin:4px;font-size:12px;color:#7dd3fc
+}
+
+
+/* ===== TIMELINE ===== */
+
+.timeline{
+position:relative;
+padding-top:40px;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+bottom:0;
+width:2px;
+background:linear-gradient(#38bdf8,#8b5cf6);
+transform:translateX(-50%);
+}
+
+.timeline-row{
+position:relative;
+display:flex;
+justify-content:space-between;
+margin-bottom:80px;
+}
+
+/* ITEM */
+.timeline-item{
+position:relative;
+width:45%;
+}
+
+/* CARD */
+.timeline-card{
+padding:26px 28px;
+border-radius:20px;
+background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+}
+
+/* DOT */
+.timeline-dot{
+position:absolute;
+left:50%;
+top:32px; /* aligns with card header */
+transform:translate(-50%, -50%);
+width:14px;
+height:14px;
+border-radius:50%;
+background:#38bdf8;
+box-shadow:
+0 0 0 6px rgba(56,189,248,.15),
+0 0 18px rgba(56,189,248,.9);
+z-index:10;
+}
+
+.timeline-dot.purple{
+background:#8b5cf6;
+box-shadow:
+0 0 0 6px rgba(139,92,246,.15),
+0 0 18px rgba(139,92,246,.9);
+}
+
+
+/* ALIGNMENT */
+.timeline-item.right{
+margin-left:auto;
+text-align:left;
+}
+
+.timeline-item.left{
+margin-right:auto;
+}
+
+/* HEADER */
+.timeline-header{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.timeline-badge{
+padding:4px 10px;
+border-radius:999px;
+font-size:12px;
+background:rgba(56,189,248,.15);
+border:1px solid rgba(56,189,248,.4);
+color:#7dd3fc;
+}
+
+.timeline-badge.internship{
+background:rgba(139,92,246,.15);
+border:1px solid rgba(139,92,246,.4);
+color:#c4b5fd;
+}
+
+.timeline-date{
+font-size:12px;
+color:#94a3b8;
+}
+
+/* COMPANY */
+.company{
+color:#38bdf8;
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* DESCRIPTION */
+.timeline-desc{
+font-size:14px;
+color:#94a3b8;
+margin-bottom:16px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+.timeline::before{
+left:20px;
+}
+
+.timeline-dot{
+left:20px;
+}
+
+.timeline-item{
+width:100%;
+margin-left:40px;
+}
+
+}
+
+
+
+/* PROJECT */
+
+.project-card{
+position:relative;
+padding:32px;
+border-radius:22px;
+background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+border:1px solid rgba(255,255,255,.08);
+transition:.35s;
+overflow:hidden;
+min-height:260px;
+}
+
+.project-card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(56,189,248,.25);
+border-color:#38bdf8;
+}
+
+/* HEADER LAYOUT */
+.project-header{
+display:flex;
+align-items:flex-start;
+gap:14px;
+margin-bottom:16px;
+}
+
+.project-header-text{
+flex:1;
+}
+
+/* TITLE */
+.project-header h3{
+font-size:20px;
+font-weight:600;
+margin-bottom:8px; /* ← exact gap before description */
+}
+
+/* ICON */
+.project-icon{
+width:42px;
+height:42px;
+border-radius:12px;
+background:#0b1322;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+/* RIGHT SIDE */
+.project-header-actions{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* BADGE */
+.project-badge{
+padding:6px 12px;
+border-radius:999px;
+background:rgba(139,92,246,.15);
+border:1px solid rgba(139,92,246,.4);
+font-size:12px;
+color:#c4b5fd;
+}
+
+/* GITHUB ICON */
+.project-github{
+width:32px;
+height:32px;
+border-radius:8px;
+background:#0b1322;
+border:1px solid rgba(255,255,255,.08);
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.25s;
+color:inherit;
+text-decoration:none;
+}
+
+.project-github:visited{
+color:inherit;
+}
+
+.project-github:active{
+color:inherit;
+}
+
+.project-github:hover{
+border-color:#38bdf8;
+box-shadow:0 0 14px rgba(56,189,248,.4);
+transform:translateY(-2px);
+color:inherit;
+}
+
+/* DESCRIPTION */
+.project-desc{
+color:#94a3b8;
+line-height:1.7;
+margin-bottom:18px;
+max-width:520px;
+}
+
+/* TAGS */
+.project-tags{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+}
+
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-item{
+display:flex;
+align-items:center;
+gap:12px;
+padding:18px;
+border-radius:14px;
+background:#0b1322;
+border:1px solid var(--border);
+margin-bottom:14px;
+text-decoration:none;
+color:white;
+transition:.25s;
+}
+
+.contact-item:hover{
+transform:translateY(-2px);
+box-shadow:0 0 18px rgba(56,189,248,.25);
+border-color:#38bdf8;
+}
+
+/* input,textarea{
+width:100%;padding:12px;border-radius:10px;background:#0b1322;border:1px solid var(--border);color:white;margin-top:10px
+} */
+
+/* SCROLL ANIMATION */
+.reveal{opacity:0;transform:translateY(40px);transition:.6s}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+footer{text-align:center;padding:40px;color:#64748b}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;text-align:center}
+.timeline::before{display:none}
+.timeline-item{width:100%;margin-left:0}
+.contact-grid{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">>_ saketh.dev</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>  
+
+    <div class="hamburger" id="hamburger">
+      ☰
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="home">
+<div class="container hero">
+
+<div class="reveal">
+<div class="badge">● Available for opportunities</div>
+<h1>Saketh <span class="gradient">Vishwanatham</span></h1>
+<p>Senior Software Engineer — DevOps & Cloud Engineer building scalable cloud-native systems.</p>
+
+<a class="btn btn-primary" href="#projects"><i data-lucide="folder"></i> View Projects</a>
+<!-- <a class="btn btn-outline" href="#contact"><i data-lucide="mail"></i> Contact</a> -->
+<a class="btn btn-outline" href="Saketh Vishwanatham CV.pdf"><i data-lucide="download"></i> Resume</a>
+
+<div class="socials">
+<a href="https://github.com/saketh1809" target="_blank"><i data-lucide="github"></i></a>
+<a href="https://www.linkedin.com/in/saketh-vishwanatham-bb9751249" target="_blank"><i data-lucide="linkedin"></i></a>
+<a href="https://instagram.com/" target="_blank"><i data-lucide="instagram"></i></a>
+</div>
+</div>
+
+<div class="profile-wrap reveal">
+<img src="./static/IMG_7736.jpg">
+<div class="float float1">$ kubectl get pods</div>
+<div class="float float2">terraform apply ✓</div>
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="section-header"><span>01.</span><h2>About Me</h2><div class="line"></div></div>
+
+<div class="about-layout">
+<!-- LEFT COLUMN -->
+<div class="about-text">
+<p>Senior Software Engineer in IT Services and IT Consulting, currently working at Capgemini, 
+    with a strong focus on DevOps and cloud-native engineering. Background in Electronics and Communication Engineering, 
+    complemented by hands-on experience across research labs, product startups, and enterprise environments.</p>
+<p style="margin-top:18px">Experienced in CI/CD automation, containerization, and infrastructure as code, with practical
+     expertise in Python, Linux, Docker, Kubernetes, Jenkins, and Terraform. Proven ability to collaborate in team-based 
+     environments to design and implement end-to-end CI/CD pipelines, containerized application workflows, and automated 
+     infrastructure setups.</p>
+<p style="margin-top:18px">Prior experience includes internships at IIIT Hyderabad, KLVIN.AI, IIT Kharagpur, and
+     Unistring Tech Solutions, providing exposure to industry-grade systems, real-world problem solving, 
+     and scalable application design. Active participation in competitive hackathons, with multiple wins, strengthened 
+     skills in rapid prototyping, technical decision-making, and cross-functional collaboration.</p>
+<p style="margin-top:18px">Currently expanding expertise in multi-cloud architectures with a strong emphasis on Google 
+    Cloud Platform, cloud automation, and modern DevOps practices.</p>
+</div>
+
+<!-- RIGHT COLUMN -->
+ <div class="about-side">
+
+
+<div class="glass-card education-card">
+<div class="education-icon">
+<i data-lucide="graduation-cap"></i>
+</div>
+<div class="education-content">
+<div class="education-label">Education</div>
+<h3 class="education-title">
+B.Tech — Electronics & Communication Engineering
+</h3>
+<p class="education-school">
+VNR Vignanajyothi Institute of Engineering & Technology
+</p>
+<div class="education-year">2021 — 2025</div>
+</div>
+</div>
+
+
+
+<div class="glass-card strengths-card">
+<div class="strengths-label">Personal Strengths</div>
+
+<div class="strengths-grid">
+
+<div class="strength-item">
+<div class="strength-icon">
+<i data-lucide="zap"></i>
+</div>
+<div>
+<h4>Problem Solving</h4>
+<p>Breaking down complex technical challenges</p>
+</div>
+</div>
+
+<div class="strength-item">
+<div class="strength-icon">
+<i data-lucide="lightbulb"></i>
+</div>
+<div>
+<h4>Continuous Learning</h4>
+<p>Always exploring new cloud & DevOps patterns</p>
+</div>
+</div>
+
+<div class="strength-item">
+<div class="strength-icon">
+<i data-lucide="users"></i>
+</div>
+<div>
+<h4>Leadership</h4>
+<p>Driving teams toward scalable architectures</p>
+</div>
+</div>
+
+<div class="strength-item">
+<div class="strength-icon">
+<i data-lucide="heart"></i>
+</div>
+<div>
+<h4>Adaptability</h4>
+<p>Thriving in fast-paced enterprise environments</p>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="container">
+<div class="section-header"><span>02.</span><h2>Experience</h2><div class="line"></div></div>
+
+<div class="timeline">
+
+<!-- 1 -->
+<div class="timeline-row">
+    <div class="timeline-dot" ></div>
+<div class="timeline-item right reveal">
+
+
+<div class="timeline-card">
+<div class="timeline-header">
+<span class="timeline-badge">Full-time</span>
+<span class="timeline-date">Sep 2025 — Present</span>
+</div>
+
+<h4>Senior Software Engineer</h4>
+<p class="company">Capgemini</p>
+
+<p class="timeline-desc">
+Working on enterprise-grade DevOps solutions, CI/CD automation, cloud-native systems,
+and multi-cloud environments. Architecting scalable infrastructure using Kubernetes,
+Terraform, and GCP.
+</p>
+
+<div class="chips">
+<span class="chip">Kubernetes</span>
+<span class="chip">Terraform</span>
+<span class="chip">CI/CD</span>
+<span class="chip">Multi-cloud</span>
+<span class="chip">GCP</span>
+<span class="chip">Docker</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="timeline-row">
+    <div class="timeline-dot purple"></div>
+<div class="timeline-item left reveal">
+
+<div class="timeline-card">
+<div class="timeline-header">
+<span class="timeline-badge internship">Internship</span>
+<span class="timeline-date">Feb 2025 — Jun 2025</span>
+</div>
+
+<h4>Supply Chain Researcher</h4>
+<p class="company">Unistring Tech Solutions</p>
+
+<p class="timeline-desc">
+Worked on system design and technical requirement analysis for supply chain optimization platforms.
+Contributed to architecture planning and technical documentation.
+</p>
+
+<div class="chips">
+<span class="chip">System Design</span>
+<span class="chip">Technical Analysis</span>
+<span class="chip">Architecture</span>
+<span class="chip">Research</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="timeline-row">
+    <div class="timeline-dot purple"></div>
+<div class="timeline-item right reveal">
+
+<div class="timeline-card">
+<div class="timeline-header">
+<span class="timeline-badge internship">Internship</span>
+<span class="timeline-date">Aug 2024 — Sep 2024</span>
+</div>
+
+<h4>Project Intern</h4>
+<p class="company">IIT Kharagpur</p>
+
+<p class="timeline-desc">
+Worked on industrial IoT systems and real-time data processing pipelines.
+Developed edge computing solutions for industrial monitoring.
+</p>
+
+<div class="chips">
+<span class="chip">IoT</span>
+<span class="chip">Real-time Systems</span>
+<span class="chip">Edge Computing</span>
+<span class="chip">Industrial Automation</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="timeline-row">
+    <div class="timeline-dot purple"></div>
+<div class="timeline-item left reveal">
+
+<div class="timeline-card">
+<div class="timeline-header">
+<span class="timeline-badge internship">Internship</span>
+<span class="timeline-date">Nov 2023 — May 2024</span>
+</div>
+
+<h4>Product Development Intern</h4>
+<p class="company">KLVIN.AI</p>
+
+<p class="timeline-desc">
+Developed IoT solutions and backend integrations for AI-driven products.
+Built firmware, REST APIs, and cloud connectivity layers.
+</p>
+
+<div class="chips">
+<span class="chip">IoT</span>
+<span class="chip">Backend</span>
+<span class="chip">Flask</span>
+<span class="chip">Cloud Integration</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="timeline-row">
+    <div class="timeline-dot purple"></div>
+<div class="timeline-item right reveal">
+
+<div class="timeline-card">
+<div class="timeline-header">
+<span class="timeline-badge internship">Internship</span>
+<span class="timeline-date">May 2023 — Jul 2023</span>
+</div>
+
+<h4>Project Intern</h4>
+<p class="company">IIIT Hyderabad</p>
+
+<p class="timeline-desc">
+Contributed to speech processing dataset curation and ML training pipelines.
+Worked on NLP tools and evaluation frameworks.
+</p>
+
+<div class="chips">
+<span class="chip">Machine Learning</span>
+<span class="chip">NLP</span>
+<span class="chip">Speech Processing</span>
+<span class="chip">Python</span>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<div class="section-header"><span>04.</span><h2>Projects</h2><div class="line"></div></div>
+
+<div class="grid grid-3 reveal">
+
+
+<div class="project-card">
+
+<!-- HEADER -->
+<div class="project-header">
+
+<div class="project-icon">
+<i data-lucide="box"></i>
+</div>
+
+<div class="project-header-text">
+<h3>Tracking System Application</h3>
+</div>
+
+<div class="project-header-actions">
+<span class="project-badge">Production-grade</span>
+<a href="https://github.com/saketh1809/Tracking-System-Project.git" 
+   class="project-github" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <i data-lucide="github"></i>
+</a>
+</div>
+
+</div>
+
+<!-- DESCRIPTION -->
+<p class="project-desc">
+Enterprise-grade real-time shipment tracking platform built with a fully containerized microservices architecture.
+Features end-to-end observability with Prometheus and Grafana dashboards.
+</p>
+
+<!-- TAGS -->
+<div class="project-tags">
+<span class="chip">Docker</span>
+<span class="chip">Kubernetes (EKS)</span>
+<span class="chip">Terraform</span>
+<span class="chip">Jenkins CI/CD</span>
+<span class="chip">MongoDB</span>
+<span class="chip">Prometheus</span>
+<span class="chip">Grafana</span>
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<!-- HEADER -->
+<div class="project-header">
+
+<div class="project-icon">
+<i data-lucide="box"></i>
+</div>
+
+<div class="project-header-text">
+<h3>Stock Market Dashboard</h3>
+</div>
+
+<div class="project-header-actions">
+<span class="project-badge">Cloud-Deployment</span>
+<a href="https://github.com/saketh1809/stock-project.git" 
+   class="project-github" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <i data-lucide="github"></i>
+</a>
+</div>
+
+</div>
+
+<!-- DESCRIPTION -->
+<p class="project-desc">
+Containerized real-time stock tracking dashboard with responsive UI.
+ Built with Flask, MongoDB, and Docker Compose for easy local development and deployment.
+</p>
+
+<!-- TAGS -->
+<div class="project-tags">
+<span class="chip">Docker</span>
+<span class="chip">Kubernetes (GKE)</span>
+<span class="chip">Terraform</span>
+<span class="chip">Jenkins CI/CD</span>
+<span class="chip">MongoDB</span>
+<span class="chip">Prometheus</span>
+<span class="chip">Grafana</span>
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<!-- HEADER -->
+<div class="project-header">
+
+<div class="project-icon">
+<i data-lucide="box"></i>
+</div>
+
+<div class="project-header-text">
+<h3>Real-Time Tsunami Warning System</h3>
+</div>
+
+<div class="project-header-actions">
+<span class="project-badge">IoT + ML</span>
+<a href="https://github.com/saketh1809/Tsunami-prediction-with-wave-buoy.git" 
+   class="project-github" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <i data-lucide="github"></i>
+</a>
+</div>
+
+</div>
+
+<!-- DESCRIPTION -->
+<p class="project-desc">
+End-to-end IoT disaster early-warning system leveraging LoRa sensor networks,
+ AWS cloud infrastructure, and ML prediction models for real-time alert generation.
+</p>
+
+<!-- TAGS -->
+<div class="project-tags">
+<span class="chip">IoT Sensors</span>
+<span class="chip">LoRa</span>
+<span class="chip">AWS</span>
+<span class="chip">Machine Learning</span>
+<span class="chip">Python</span>
+<span class="chip">Real-time Processing</span>
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<!-- HEADER -->
+<div class="project-header">
+
+<div class="project-icon">
+<i data-lucide="box"></i>
+</div>
+
+<div class="project-header-text">
+<h3>Smart Monitoring of Crops</h3>
+</div>
+
+<div class="project-header-actions">
+<span class="project-badge">AgriTech</span>
+<!-- <a href="https://github.com/saketh1809/tracking-system" 
+   class="project-github" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <i data-lucide="github"></i>
+</a> -->
+</div>
+
+</div>
+
+<!-- DESCRIPTION -->
+<p class="project-desc">
+Precision agriculture IoT platform automating crop environment monitoring.
+ Integrates sensor data streams with alerting and remote control for irrigation and climate systems.
+</p>
+
+<!-- TAGS -->
+<div class="project-tags">
+<span class="chip">Raspberry Pi</span>
+<span class="chip">IOT Sensors</span>
+<span class="chip">Machine Learning</span>
+<span class="chip">Real-time Processing</span>
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<!-- HEADER -->
+<div class="project-header">
+
+<div class="project-icon">
+<i data-lucide="box"></i>
+</div>
+
+<div class="project-header-text">
+<h3>Air Quality Monitoring System</h3>
+</div>
+
+<div class="project-header-actions">
+<span class="project-badge">IOT</span>
+<a href="https://github.com/saketh1809/Air-Purifier.git" 
+   class="project-github" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <i data-lucide="github"></i>
+</a>
+</div>
+
+</div>
+
+<!-- DESCRIPTION -->
+<p class="project-desc">
+Distributed sensor network monitoring PM2.5, CO2, and VOC levels with automated air 
+purification mechanisms. Features real-time data visualization and threshold alerting.
+</p>
+
+<!-- TAGS -->
+<div class="project-tags">
+<span class="chip">ESP 32</span>
+<span class="chip">Sensors</span>
+<span class="chip">Data Visualization</span>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+<div class="section-header"><span>05.</span><h2>Contact</h2><div class="line"></div></div>
+
+<div class="contact-grid">
+
+<div class="reveal">
+<div class="contact-item"><i data-lucide="mail"></i> sakethvishwanatham@gmail.com</div>
+<div class="contact-item"><i data-lucide="phone"></i> +91 8885085188</div>
+<a class="contact-item" href="https://www.linkedin.com/in/saketh-vishwanatham-bb9751249" target="_blank">
+<i data-lucide="linkedin"></i>
+<span>LinkedIn</span>
+</a>
+<a class="contact-item" href="https://github.com/saketh1809" target="_blank">
+<i data-lucide="github"></i>
+<span>GitHub</span>
+</a>
+</div>
+
+<!-- <div class="card reveal">
+<label>Name</label><input>
+<label>Email</label><input>
+<label>Message</label><textarea rows="5"></textarea>
+<button class="btn btn-primary">Send Message</button>
+</div> -->
+
+</div>
+</div>
+</section>
+
+<footer>Designed & built by Saketh Vishwanatham — 2026</footer>
+
+<script>
+lucide.createIcons()
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("active")})
+})
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
+
+// NAV
+const hamburger=document.getElementById("hamburger")
+const navLinks=document.getElementById("navLinks")
+
+hamburger.addEventListener("click",()=>{
+navLinks.classList.toggle("active")
+})
+</script>
+
+</body>
+</html>
