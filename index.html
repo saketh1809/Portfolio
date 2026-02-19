@@ -641,18 +641,19 @@ margin-bottom:16px;
 
 .timeline{
   position:relative;
-  padding-left:36px;
+  padding-left:32px;
 }
 
 .timeline::before{
   content:"";
   position:absolute;
-  left:16px;
+  left:12px;
   top:0;
   bottom:0;
   width:2px;
   background:linear-gradient(#38bdf8,#8b5cf6);
 }
+
 
 .timeline-row{
   position:relative;
@@ -663,7 +664,7 @@ margin-bottom:16px;
   width:100%;
 }
 
-.timeline-dot{
+/* .timeline-dot{
   position:absolute;
   left:16px;
   top:30px;
@@ -675,7 +676,17 @@ margin-bottom:16px;
   box-shadow:
     0 0 0 5px rgba(56,189,248,.15),
     0 0 12px rgba(56,189,248,.9);
+} */
+
+.timeline-dot{
+  position:absolute;
+  left:12px;
+  top:30px;
+  transform:translate(-50%,0);
+  width:12px;
+  height:12px;
 }
+
 
 .timeline-dot.purple{
   background:#8b5cf6;
